@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}
+  Пост {{ detail.text|truncatechars:30 }}
+{% endblock %}
+{% block content %}
+{% load thumbnail %}
+<div class="row">
+  <aside class="col-12 col-md-3">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        Дата публикации: {{ detail.pub_date|date:'d E Y' }}
+      </li>               
+      <li class="list-group-item">
+        Группа: {{ detail.group.title }}
+        {% if detail.group and not group %}
+          <a href="{% url 'posts:group_list' detail.group.slug %}">
+          все записи группы
+        {% endif %}
+        </a>
+      </li>            
+      <li class="list-group-item">
+        Автор: {{ detail.author.get_full_name }}
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Всего постов автора:  {{ detail.author.posts.count }}
+      </li>
+      <li class="list-group-item">
+        <a href="{% url 'posts:profile' detail.author %}">
+          все посты пользователя
+        </a>
+      </li>
+    </ul>
+  </aside>
+  <article class="col-12 col-md-9">
+    {% thumbnail detail.image "960x339" crop="center" upscale=True as im %}
+      <img class="card-img my-2" src="{{ im.url }}">
+    {% endthumbnail %}
+    <p>
+      {{ detail.text }}
+    </p>
+    {% if detail.author == request.user %}
+    <a class="btn btn-primary" href="{% url 'posts:edit' detail.id %}">
+      редактировать запись
+    {% endif %}
+    </a>
+    {% include 'includes/comment.html' %}                
+  </article>
+</div>
+{% endblock %}

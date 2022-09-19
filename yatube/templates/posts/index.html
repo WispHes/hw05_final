@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+  {{ title }}
+{% endblock%}
+{% block content %}
+{% load cache %}
+{% cache 20 index_page page_obj.number%}
+  <h1>{{ text }}</h1>
+  {% include 'posts/includes/switcher.html' %}
+    {% for post in page_obj %}
+      {% include 'includes/article.html' %}
+      {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+    {% include 'posts/includes/paginator.html' %}
+{% endcache %} 
+{% endblock %}
+

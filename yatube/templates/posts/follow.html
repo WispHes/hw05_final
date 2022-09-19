@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}
+  Подписка на автора
+{% endblock%}
+{% block content %}
+  {% include 'posts/includes/switcher.html' %}
+    {% for post in page_obj %}
+      {% include 'includes/article.html' %}
+      {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+    {% include 'posts/includes/paginator.html' %}
+{% endblock %}
