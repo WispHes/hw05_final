@@ -1,18 +1,7 @@
 from django.urls import path
-
-from posts.views import (
-    group_posts,
-    index,
-    profile,
-    post_detail,
-    post_create,
-    post_edit,
-    add_comment,
-    follow_index,
-    profile_follow,
-    profile_unfollow,
-)
-
+from posts.views import (add_comment, follow_index, group_posts, index,
+                         post_create, post_detail, post_edit, profile,
+                         profile_follow, profile_unfollow)
 
 app_name = 'posts'
 

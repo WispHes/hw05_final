@@ -1,7 +1,6 @@
-from django.db import models
 from django.contrib.auth import get_user_model
-from django.db.models import UniqueConstraint, CheckConstraint, Q, F
-
+from django.db import models
+from django.db.models import CheckConstraint, F, Q, UniqueConstraint
 
 User = get_user_model()
 

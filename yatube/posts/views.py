@@ -1,10 +1,10 @@
-from django.core.paginator import Paginator
-from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import PostForm, CommentForm
-from .models import Post, Group, User, Follow
+from .forms import CommentForm, PostForm
+from .models import Follow, Group, Post, User
 
 
 def get_page(page_number, post_list):
